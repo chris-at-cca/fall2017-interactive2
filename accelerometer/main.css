@@ -1,0 +1,20 @@
+* { margin: 0px; padding: 0px; }
+
+#fun {
+	height: 100vh;
+	width: 100vw;
+	background: yellow;
+}
+
+#shape {
+	width: 50vw;
+	height: 50vh;
+	position: absolute;
+	top: 25vh;
+	left: 25vw;
+	background: black;
+}
+
+.round {
+	border-radius: 0px;
+}
