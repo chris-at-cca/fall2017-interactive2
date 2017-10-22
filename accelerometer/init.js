@@ -90,12 +90,12 @@ Graphic.prototype.accelHandler = function(accel){
  var h = x/60.0;
  var c  = HSVtoRGB(h,1,1);
  this.background_color = "rgb("+c.r+","+c.g+","+c.b+")" ;
- if(this.activated){
+ // if(this.activated){
     $("#orientation").html("<br />x: "+x+"<br />y: "+y+"<br />z: "+z+"<br />xg: "+xg+"<br />yg: "+yg+"<br />zg: "+zg);
     $(".round").css("border-radius", x*10+"px");
     $("#shape").css("height", y*10+"vh");
     $fun.css("background-color", this.background_color);
- }
+ // }
 }
 
 Graphic.prototype.orientHandler = function(orient){
