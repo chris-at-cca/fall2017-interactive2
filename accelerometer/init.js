@@ -87,12 +87,12 @@ Graphic.prototype.accelHandler = function(accel){
  var h = x/60.0;
  var c  = HSVtoRGB(h,1,1);
  this.background_color = "rgb("+c.r+","+c.g+","+c.b+")" ;
- // if(this.activated){
+ if(this.activated){
     $("#orientation").html("<br />x: "+x+"<br />y: "+y+"<br />z: "+z);
     $(".round").css("border-radius", Math.abs(x)*10+"px");
     $("#shape").css("width", Math.abs(y)*2+"vh");
     $fun.css("background-color", this.background_color);
- // }
+ }
 }
 
 Graphic.prototype.orientHandler = function(orient){
