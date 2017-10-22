@@ -90,7 +90,9 @@ Graphic.prototype.accelHandler = function(accel){
  var c  = HSVtoRGB(h,1,1);
  this.background_color = "rgb("+c.r+","+c.g+","+c.b+")" ;
  if(this.activated){
-   $fun.css("background-color", this.background_color);
+    console.log('this is x: '+x);
+    console.log('this is h: '+h);
+    $fun.css("background-color", this.background_color);
  }
 }
 
