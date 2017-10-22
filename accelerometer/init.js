@@ -1,6 +1,5 @@
 var context;
 var $fun;
-var synth;
 var graphic;
 
 
@@ -27,7 +26,6 @@ var checkFeatureSupport = function(){
 
 var setup = function(){
   checkFeatureSupport();
-  synth = new Synth();
   graphic = new Graphic();
   $fun = $("#fun");
 
@@ -51,22 +49,18 @@ var setup = function(){
 //touch and gesture mappings to synth and graphic
 //
 var touchActivate = function(e){
-  synth.touchActivate(e);
   graphic.touchActivate(e);
 }
 
 var touchDeactivate = function(e){
-  synth.touchDeactivate(e);
   graphic.touchDeactivate(e);
 }
 
 function deviceMotionHandler(eventData) {
-  synth.accelHandler(eventData);
   graphic.accelHandler(eventData);
 }
 
 function devOrientHandler(eventData) {
-  synth.orientHandler(eventData);
   graphic.orientHandler(eventData);
 }
 
