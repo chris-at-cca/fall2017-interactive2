@@ -81,13 +81,17 @@ Graphic.prototype.touchDeactivate = function(e){
 }
 
 Graphic.prototype.accelHandler = function(accel){
- var x = accel.accelerationIncludingGravity.x;
- var y = accel.accelerationIncludingGravity.y;
+ var x = accel.acceleration.x;
+ var y = accel.acceleration.y;
+ var z = accel.acceleration.z;
+ var xg = accel.accelerationIncludingGravity.x;
+ var yg = accel.accelerationIncludingGravity.y;
+ var zg = accel.accelerationIncludingGravity.z;
  var h = x/60.0;
  var c  = HSVtoRGB(h,1,1);
  this.background_color = "rgb("+c.r+","+c.g+","+c.b+")" ;
  if(this.activated){
-    $("#orientation").html("x: "+x+", y:"+y+", x*10:"+(x*10));
+    $("#orientation").html("x: "+x+", y: "+y+", z: "+z+", xg: "+xg+", yg: "+yg+", zg: "+zg);
     $(".round").css("border-radius", x*10+"px");
     $("#shape").css("height", y*10+"vh");
     $fun.css("background-color", this.background_color);
