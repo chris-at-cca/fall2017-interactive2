@@ -18,28 +18,6 @@ $(document).ready(function(){
 });
 
 var checkFeatureSupport = function(){
-  try{
-    window.AudioContext = window.AudioContext||window.webkitAudioContext;
-    context = new AudioContext();
-
-    //ios fix from p5.sound
-    var iOS = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
-    if (iOS) {
-        $("#fun").prepend("<p id='initialize'>tap to initialize</p>");
-        window.addEventListener('touchend', function() {
-            var buffer = context.createBuffer(1, 1, 22050);
-            var source = context.createBufferSource();
-            source.buffer = buffer;
-            source.connect(context.destination);
-            source.start(0);
-            $("#initialize").remove();
-        }, false);
-    }
-
-  }
-  catch (err){
-    alert('web audio not supported');
-  }
 
   if (!window.DeviceMotionEvent) {
     alert("DeviveMotionEvent not supported");
@@ -92,92 +70,9 @@ function devOrientHandler(eventData) {
   graphic.orientHandler(eventData);
 }
 
-
-
 function map_range(value, low1, high1, low2, high2) {
     return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
 }
-
-function Note(){
-  this.filter;
-  this.gain;
-  this.osc;
-  this.played = false;
-  this.buildSynth();
-}
-
-Note.prototype.buildSynth = function(){
-  this.osc = context.createOscillator(); // Create sound source
-  this.osc.type = "square"; // Square wave
-  this.osc.frequency.value = 400;
-
-  this.filter = context.createBiquadFilter();
-  this.filter.type = "lowpass";
-  this.filter.frequency.value = 440;
-
-  this.gain = context.createGain();
-  this.gain.gain.value = 0;
-
-
-  this.osc.connect(this.filter); // Connect sound to output
-  this.filter.connect(this.gain);
-  this.gain.connect(context.destination);
-}
-
-Note.prototype.setPitch = function(p){
-  this.osc.frequency.value = p;
-}
-
-Note.prototype.setFilter = function(f){
-  this.filter.frequency.value = f;
-}
-
-Note.prototype.setVolume= function(v){
-  this.gain.gain.value = v;
-}
-
-Note.prototype.play = function(e){
-  e.preventDefault();
-  if(!this.played){
-    this.osc.start(0); // Play instantly
-  }
-
-  this.played = true;
-  this.setVolume(0.9);
-  return false;
-}
-
-Note.prototype.stop = function(e){
-  e.preventDefault();
-  this.setVolume(0);
-  return false;
-}
-
-
-function Synth(){
-  this.note = new Note();
-}
-
-Synth.prototype.touchActivate= function(e){
-  this.note.play(e);
-}
-
-Synth.prototype.touchDeactivate= function(e){
-  this.note.stop(e);
-}
-
-
-Synth.prototype.accelHandler = function(accel){
- var x = accel.accelerationIncludingGravity.x;
- this.note.setPitch(200 + x*100);
-}
-
-Synth.prototype.orientHandler = function(orient){
-  var tiltFB = orient.beta;
-  var filterval = map_range(tiltFB, -90, 90, 10000, 0);
-  this.note.setFilter(filterval);
-}
-
 
 function Graphic(){
   this.activated = false;;
