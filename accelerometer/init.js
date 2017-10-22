@@ -87,7 +87,7 @@ Graphic.prototype.accelHandler = function(accel){
  var c  = HSVtoRGB(h,1,1);
  this.background_color = "rgb("+c.r+","+c.g+","+c.b+")" ;
  if(this.activated){
-    $("#orientation").html("x: "+x+", h:"+h+", x*10:"+(x*10));
+    $("#orientation").html("x: "+x+", y:"+y+", x*10:"+(x*10));
     $(".round").css("border-radius", x*10+"px");
     $("#shape").css("height", y*10+"vh");
     $fun.css("background-color", this.background_color);
